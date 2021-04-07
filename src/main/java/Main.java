@@ -1,5 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,14 +8,17 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 public class Main {
 
-    @BeforeClass
-    public static void setup() {
+    private WebDriver driver;
+
+    @Before
+    public void setUp() {
         WebDriverManager.edgedriver().setup();
+        driver = new EdgeDriver();
     }
 
     @Test
     public void test() {
-        WebDriver driver = new EdgeDriver();
+
         driver.get("https://www.saucedemo.com/");
         driver.manage().window().fullscreen();
         WebElement login = driver.findElement(By.cssSelector("#user-name"));
