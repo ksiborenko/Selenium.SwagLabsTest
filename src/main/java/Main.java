@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -48,6 +49,7 @@ public class Main {
         this.driver.findElement(By.id("continue")).click();
         this.driver.findElement(By.xpath("//*[@id=\"finish\"]")).click();
         this.driver.findElement(By.name("back-to-products")).click();
+        Assert.assertTrue(this.driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a")).isDisplayed());
     }
 
     @After
