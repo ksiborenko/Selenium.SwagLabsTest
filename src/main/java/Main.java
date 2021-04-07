@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -13,29 +14,28 @@ public class Main {
     @Before
     public void setUp() {
         WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        this.driver = new EdgeDriver();
     }
 
     @Test
     public void test() {
-
-        driver.get("https://www.saucedemo.com/");
-        driver.manage().window().fullscreen();
+        this.driver.get("https://www.saucedemo.com/");
+        this.driver.manage().window().fullscreen();
         WebElement login = driver.findElement(By.cssSelector("#user-name"));
         login.click();
         login.sendKeys("standard_user");
         WebElement password = driver.findElement(By.cssSelector("#password"));
         password.click();
         password.sendKeys("secret_sauce");
-        driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
-        driver.findElement(By.id("shopping_cart_container")).click();
-        driver.findElement(By.xpath("//*[@id=\"continue-shopping\"]")).click();
-        driver.findElement(By.id("shopping_cart_container")).click();
-        driver.findElement(By.xpath("//*[@id=\"checkout\"]")).click();
+        this.driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
+        this.driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        this.driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        this.driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        this.driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
+        this.driver.findElement(By.id("shopping_cart_container")).click();
+        this.driver.findElement(By.xpath("//*[@id=\"continue-shopping\"]")).click();
+        this.driver.findElement(By.id("shopping_cart_container")).click();
+        this.driver.findElement(By.xpath("//*[@id=\"checkout\"]")).click();
         WebElement name = driver.findElement(By.xpath("//*[@id=\"first-name\"]"));
         name.click();
         name.sendKeys("Konrad");
@@ -45,10 +45,13 @@ public class Main {
         WebElement code = driver.findElement(By.id("postal-code"));
         code.click();
         code.sendKeys("02-601");
-        driver.findElement(By.id("continue")).click();
-        driver.findElement(By.xpath("//*[@id=\"finish\"]")).click();
-        driver.findElement(By.name("back-to-products")).click();
-        driver.quit();
+        this.driver.findElement(By.id("continue")).click();
+        this.driver.findElement(By.xpath("//*[@id=\"finish\"]")).click();
+        this.driver.findElement(By.name("back-to-products")).click();
     }
 
+    @After
+    public void end() {
+        this.driver.quit();
+    }
 }
