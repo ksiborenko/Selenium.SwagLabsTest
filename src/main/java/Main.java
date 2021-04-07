@@ -18,10 +18,10 @@ public class Main {
         WebDriver driver = new EdgeDriver();
         driver.get("https://www.saucedemo.com/");
         driver.manage().window().fullscreen();
-        WebElement login = driver.findElement(By.xpath("//*[@id=\"user-name\"]"));
+        WebElement login = driver.findElement(By.cssSelector("#user-name"));
         login.click();
         login.sendKeys("standard_user");
-        WebElement password = driver.findElement(By.xpath("//*[@id=\"password\"]"));
+        WebElement password = driver.findElement(By.cssSelector("#password"));
         password.click();
         password.sendKeys("secret_sauce");
         driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
